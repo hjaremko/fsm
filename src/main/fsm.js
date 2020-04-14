@@ -160,6 +160,9 @@ function snapNode(node) {
 }
 
 window.onload = function() {
+	box = document.getElementById('output');
+	box.style.display = 'block';
+
 	canvas = document.getElementById('canvas');
 	restoreBackup();
 	draw();
@@ -396,4 +399,19 @@ function saveAsLaTeX() {
 	selectedObject = oldSelectedObject;
 	var texData = exporter.toLaTeX();
 	output(texData);
+}
+
+function saveAsJSON() {
+	output(serializeAsJSON());
+}
+
+function importFromJSON() {
+	var output = document.getElementById('output');
+	output.style.display = 'block';
+
+	nodes = [];
+	links = [];
+
+	deserialzeFromJSON(output.value);
+	draw();
 }
